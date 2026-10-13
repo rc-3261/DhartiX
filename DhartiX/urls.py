@@ -1,12 +1,20 @@
 """
 URL configuration for DhartiX project.
 """
+from django.http import HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+def home(request):
+    return HttpResponse("""
+        <h1>Welcome to DhartiX 🌱</h1>
+        <p>Your DhartiX application is running successfully!</p>
+    """)
+
 urlpatterns = [
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('api/auth/', include('accounts.urls')),
     path('api/', include('farms.urls')),
